@@ -1,45 +1,27 @@
 {
-  "lego": [
-    {
-      "creator": "Panya",
-      "color": "6",
-      "shape": "hut",
-      "creation": "Dream House",
-      "id": 1
-    }
+  "employees": [
+    { "id": 1, "name": "Jessica Younker" },
+    { "id": 2, "name": "Jordan Nelson" },
+    { "id": 3, "name": "Zoe LeBlanc" },
+    { "id": 4, "name": "Blaise Roberts" }
   ],
-  "colors": [
-    {
-      "id": 1,
-      "name": "red"
-    },
-    {
-      "id": 2,
-      "name": "blue"
-    },
-    {
-      "id": 3,
-      "name": "white"
-    },
-    {
-      "id": 4,
-      "name": "black"
-    },
-    {
-      "id": 5,
-      "name": "yellow"
-    },
-    {
-      "id": 6,
-      "name": "purple"
-    },
-    {
-      "id": 7,
-      "name": "pink"
-    },
-    {
-      "id": 8,
-      "name": "light blue"
-    }
+  "locations": [
+    { "id": 1, "name": "Nashville North", "address": "500 Circle Way" },
+    { "id": 2, "name": "Nashville South", "address": "10101 Binary Court" }
+  ],
+  "animals": [
+    { "id": 1, "name": "Doodles" },
+    { "id": 2, "name": "Jack" },
+    { "id": 3, "name": "Angus" },
+    { "id": 4, "name": "Henley" },
+    { "id": 5, "name": "Derkins" },
+    { "id": 6, "name": "Checkers" }
+  ],
+  "owners": [
+    { "id": 1, "name": "Summer Rainault", "phoneNumber": "xxx-xxx-xxxx" },
+    { "id": 2, "name": "Barry Allen", "phoneNumber": "xxx-xxx-xxxx" },
+    { "id": 3, "name": "James Farrell", "phoneNumber": "xxx-xxx-xxxx" },
+    { "id": 4, "name": "Vaughn Snow", "phoneNumber": "xxx-xxx-xxxx" },
+    { "id": 5, "name": "Bwtwyr ap Ban", "phoneNumber": "xxx-xxx-xxxx" }
   ]
 }

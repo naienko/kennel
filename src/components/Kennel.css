@@ -3,3 +3,8 @@
     justify-content: space-around;
     flex-direction: row;
 }
+
+#body {
+    margin-top: 75px;
+    z-index: 0;
+}
