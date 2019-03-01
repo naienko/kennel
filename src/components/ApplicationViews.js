@@ -25,13 +25,13 @@ class ApplicationViews extends Component {
         AnimalManager.getAll()
             .then(animals => newState.animals = animals)
 
-        EmployeeManager.getAll()
+            .then(() => EmployeeManager.getAll())
             .then(employees => newState.employees = employees)
 
-        LocationManager.getAll()
+            .then(() => LocationManager.getAll())
             .then(locations => newState.locations = locations)
 
-        OwnerManager.getAll()
+            .then(() => OwnerManager.getAll())
             .then(owners => newState.owners = owners)
 
             .then(() => fetch("http://localhost:5002/ownersAnimals?_expand=owner&_expand=animal")
@@ -54,11 +54,7 @@ class ApplicationViews extends Component {
     }
 
     deleteEmployee = id => {
-        return fetch(`http://localhost:5002/employees/${id}`, {
-            method: "DELETE"
-        })
-        .then(() => fetch("http://localhost:5002/employees"))
-        .then(e => e.json())
+        EmployeeManager.deleteAndGetAll(id)
         .then(employees => this.setState({
             employees: employees
         })

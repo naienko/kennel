@@ -7,9 +7,16 @@ export default {
     getAll: () => {
         return fetch(`${Settings.RemoteURL}/employees`).then(results => results.json())
     },
+    deleteAndGetAll: id => {
+        return fetch(`${Settings.RemoteURL}/employees/${id}`, {
+            method: "DELETE"
+        })
+        .then(() => fetch(`${Settings.RemoteURL}/employees`))
+        .then(results => results.json())
+    },
     delete: id => {
         return fetch(`${Settings.RemoteURL}/employees/${id}`, {
             method: "DELETE"
-        }).then(results => results.json())
+        })
     }
 }

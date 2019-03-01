@@ -1,3 +1,3 @@
 export default {
-    RemoteURL: "http://localhost:5002/"
+    RemoteURL: "http://localhost:5002"
 } 

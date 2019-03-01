@@ -10,6 +10,7 @@ export default {
     delete: id => {
         return fetch(`${Settings.RemoteURL}/animals/${id}`, {
             method: "DELETE"
-        }).then(results => results.json())
+        })
+        .then(results => results.json())
     }
 }
