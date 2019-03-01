@@ -7,8 +7,11 @@ class EmployeeList extends Component {
             <h1>Employee List</h1>
             {
                 this.props.employees.map(employee =>
-                    <div key={employee.id}>
+                    <div key={employee.id} className="card">
                         {employee.name}
+                        <a href="#"
+                            onClick={() => this.props.deleteEmployee(employee.id)}
+                            className="card-link">Delete</a>
                     </div>
                 )
             }
