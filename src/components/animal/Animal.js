@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
-import dog from "./DogIcon.png"
-import "./Animal.css"
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
-export default class Animal  extends Component {
+import dog from "./DogIcon.png";
+import "./Animal.css";
+
+export default class Animal extends Component {
     render() {
+        console.log(this.props.history);
         return (
             <React.Fragment>
             {
@@ -12,9 +15,16 @@ export default class Animal  extends Component {
                         <h5 className="card-title">
                             <img src={dog} className="icon--dog" />
                             {this.props.animal.name}
-                            <p>({this.props.owner.name})</p>
+                            { this.props.isDetailView === true ?
+                                <React.Fragment>
+                                    <p>({this.props.owner.name})</p>
+                                </React.Fragment>
+                                :
+                                <Link className="nav-link" to={`/animals/${this.props.animal.id}`}>Details</Link>
+                            }
                             <a href="#"
-                            onClick={() => this.props.deleteAnimal(this.props.animal.id)}
+                            onClick={() => this.props.deleteAnimal(this.props.animal.id)
+                                .then(() => this.props.history.push("/animals"))}
                             className="card-link">Delete</a>
                         </h5>
                     </div>

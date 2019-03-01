@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Animal from "./Animal"
 
-export default class AnimalList  extends Component {
+export default class AnimalList extends Component {
     render() {
         return (
             <section className="animals">
