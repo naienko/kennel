@@ -10,9 +10,9 @@ export default class AnimalForm extends Component {
     };
     
     // Update state whenever an input field is edited
-    handleFieldChange = evt => {
+    handleFieldChange = event => {
         const stateToChange = {};
-        stateToChange[evt.target.id] = evt.target.value;
+        stateToChange[event.target.id] = event.target.value;
         this.setState(stateToChange);
     };
     
@@ -20,8 +20,8 @@ export default class AnimalForm extends Component {
     Local method for validation, creating animal object, and
     invoking the function reference passed from parent component
     */
-    constructNewAnimal = evt => {
-        evt.preventDefault();
+    constructNewAnimal = event => {
+        event.preventDefault();
         if (this.state.employee === "") {
             window.alert("Please select a caretaker");
         } else {
@@ -55,9 +55,9 @@ export default class AnimalForm extends Component {
                         <label htmlFor="employee">Assign to caretaker</label>
                             <select defaultValue="" name="employee" id="employeeId" onChange={this.handleFieldChange}>
                                 <option value="">Select an employee</option>
-                                    {this.props.employees.map(e => (
-                                        <option key={e.id} id={e.id} value={e.id}>
-                                            {e.name}
+                                    {this.props.employees.map(element => (
+                                        <option key={element.id} id={element.id} value={element.id}>
+                                            {element.name}
                                         </option>
                                     ))}
                             </select>

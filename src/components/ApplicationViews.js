@@ -11,6 +11,8 @@ import OwnerManager from '../modules/api/OwnerManager';
 import AnimalDetail from './animal/AnimalDetail';
 import EmployeeDetail from './employee/EmployeeDetail';
 import OwnerDetail from "./owner/OwnerDetail";
+import AnimalForm from "./animal/AnimalForm";
+import EmployeeForm from "./employee/EmployeeForm";
 
 class ApplicationViews extends Component {
 
@@ -91,6 +93,16 @@ class ApplicationViews extends Component {
         );
     }
 
+    addEmployee = employee => {
+        EmployeeManager.post(employee)
+        .then(() => EmployeeManager.getAll())
+        .then(employees =>
+            this.setState({
+                employees: employees
+            })
+        );
+    }
+
     render() {
         return (
             <div id="body">
@@ -98,8 +110,9 @@ class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
 
-                <Route exact path="/animals" render={() => {
-                    return <AnimalList animals={this.state.animals} 
+                <Route exact path="/animals" render={(props) => {
+                    return <AnimalList {...props}
+                        animals={this.state.animals} 
                         ownersToAnimals={this.state.ownersToAnimals} 
                         deleteAnimal={this.deleteAnimal} />
                 }} />
@@ -110,19 +123,24 @@ class ApplicationViews extends Component {
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     return <AnimalDetail {...props} 
-                    deleteAnimal={this.deleteAnimal}
-                    ownersToAnimals={this.state.ownersToAnimals}
-                    animals={this.state.animals} />
+                        deleteAnimal={this.deleteAnimal}
+                        ownersToAnimals={this.state.ownersToAnimals}
+                        animals={this.state.animals} />
                 }} />
 
-                <Route exact path="/employees" render={() => {
-                    return <EmployeeList employees={this.state.employees}
-                    deleteEmployee={this.deleteEmployee} />
+                <Route exact path="/employees" render={(props) => {
+                    return <EmployeeList {...props}
+                        employees={this.state.employees}
+                        deleteEmployee={this.deleteEmployee} />
+                }} />
+                <Route path="/employees/new" render={(props) => {
+                    return <EmployeeForm {...props}
+                        addEmployee={this.addEmployee} />
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     return <EmployeeDetail {...props} 
-                    deleteEmployee={this.deleteEmployee}
-                    employees={this.state.employees} />
+                        deleteEmployee={this.deleteEmployee}
+                        employees={this.state.employees} />
                 }} />
 
                 <Route exact path="/owners" render={() => {
@@ -131,8 +149,8 @@ class ApplicationViews extends Component {
                 }} />
                 <Route path="/owners/:ownerId(\d+)" render={(props) => {
                     return <OwnerDetail {...props} 
-                    deleteOwner={this.deleteOwner}
-                    owners={this.state.owners} />
+                        deleteOwner={this.deleteOwner}
+                        owners={this.state.owners} />
                 }} />
             </div>
         )
