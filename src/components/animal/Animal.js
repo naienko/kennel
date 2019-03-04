@@ -6,7 +6,6 @@ import "./Animal.css";
 
 export default class Animal extends Component {
     render() {
-        console.log(this.props.history);
         return (
             <React.Fragment>
             {
@@ -14,10 +13,15 @@ export default class Animal extends Component {
                     <div className="card-body">
                         <h5 className="card-title">
                             <img src={dog} className="icon--dog" />
-                            {this.props.animal.name}
+                            <div>{this.props.animal.name}</div>
                             { this.props.isDetailView === true ?
                                 <React.Fragment>
-                                    <p>({this.props.owner.name})</p>
+                                    <div>
+                                        {this.props.animal.breed}{" "}{this.props.species[0].name}
+                                    </div>
+                                    <div className="ownerList">(
+                                        {this.props.owners.join(", ")}
+                                    )</div>
                                 </React.Fragment>
                                 :
                                 <Link className="nav-link" to={`/animals/${this.props.animal.id}`}>Details</Link>

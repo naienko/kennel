@@ -26,7 +26,8 @@ export default class ApplicationViews extends Component {
         locations: [],
         animals: [],
         owners: [],
-        ownersToAnimals: []
+        ownersToAnimals: [],
+        species: []
     }
 
     componentDidMount() {
@@ -48,6 +49,10 @@ export default class ApplicationViews extends Component {
             .then(r => r.json()))
             .then(ownersToAnimals => newState.ownersToAnimals = ownersToAnimals)
 
+            .then(() => fetch("http://localhost:5002/species"))
+            .then(results => results.json())
+            .then(species => newState.species = species)
+
             .then(() => this.setState(newState))
     }
 
@@ -60,6 +65,10 @@ export default class ApplicationViews extends Component {
         .then(ownersToAnimals => this.setState({
             ownersToAnimals: ownersToAnimals
         })
+        .then(() => AnimalManager.getAll())
+        .then(animals => this.setState({
+            animals: animals
+        }))
       )
     }
 
@@ -135,6 +144,8 @@ export default class ApplicationViews extends Component {
                     if (this.isAuthenticated()) {
                         return <AnimalList {...props}
                             animals={this.state.animals} 
+                            owners={this.state.owners} 
+                            species={this.state.species}
                             ownersToAnimals={this.state.ownersToAnimals} 
                             deleteAnimal={this.deleteAnimal} />
                     } else {
@@ -146,6 +157,7 @@ export default class ApplicationViews extends Component {
                         return <AnimalForm {...props}
                            addAnimal={this.addAnimal}
                            owners={this.state.owners}
+                           species={this.state.species}
                            employees={this.state.employees} />
                     } else {
                         return <Redirect to="/login" />
@@ -156,6 +168,8 @@ export default class ApplicationViews extends Component {
                         return <AnimalDetail {...props} 
                             deleteAnimal={this.deleteAnimal}
                             ownersToAnimals={this.state.ownersToAnimals}
+                            owners={this.state.owners}
+                            species={this.state.species}
                             animals={this.state.animals} />
                     } else {
                         return <Redirect to="/login" />

@@ -32,23 +32,33 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodles"
+      "name": "Doodles",
+      "breed": "labrador",
+      "speciesId": 1
     },
     {
       "id": 3,
-      "name": "Angus"
+      "name": "Angus",
+      "breed": "poodle",
+      "speciesId": 1
     },
     {
       "id": 4,
-      "name": "Henley"
+      "name": "Henley",
+      "breed": "carolina retriever",
+      "speciesId": 1
     },
     {
       "id": 5,
-      "name": "Derkins"
+      "name": "Derkins",
+      "breed": "mutt",
+      "speciesId": 1
     },
     {
       "id": 6,
-      "name": "Checkers"
+      "name": "Checkers",
+      "breed": "ragdoll",
+      "speciesId": 2
     }
   ],
   "owners": [
@@ -98,6 +108,20 @@
       "id": 7,
       "ownerId": 2,
       "animalId": 6
+    }
+  ],
+  "species": [
+    {
+      "id": 1,
+      "name": "dog"
+    },
+    {
+      "id": 2,
+      "name": "cat"
+    },
+    {
+      "id": 3,
+      "name": "gerbil"
     }
   ]
 }

@@ -13,10 +13,19 @@ export default class AnimalList extends Component {
                 </div>
                 <section className="animals">
                     {
-                        this.props.ownersToAnimals.map(animal => 
-                            <Animal animal={animal.animal} 
-                                owner={animal.owner} 
-                                key={animal.id} 
+                        this.props.animals.map(animal => 
+                            <Animal animal={animal} 
+                                owners={
+                                    this.props.ownersToAnimals
+                                        .filter(ao => ao.animalId === animal.id)
+                                        .map(ao =>
+                                            this.props.owners.find(
+                                                o => o.id === ao.ownerId
+                                            ).name
+                                        )
+                                }
+                                species={this.props.species.filter(element => element.id === animal.speciesId).name}
+                                key={`animal-${animal.id}`} 
                                 deleteAnimal={this.props.deleteAnimal} />
                         )
                     }
