@@ -6,6 +6,15 @@ export default class AnimalList extends Component {
         return (
             <section className="animals">
                 <h1>Animal List</h1>
+                <div className="animalButton">
+                    <button type="button"
+                            className="btn btn-success"
+                            onClick={() => {
+                                this.props.history.push("/animals/new")}
+                            }>
+                        Admit Animal
+                    </button>
+                </div>
                 {
                     this.props.ownersToAnimals.map(animal => 
                         <Animal animal={animal.animal} 

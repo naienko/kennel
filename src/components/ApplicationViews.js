@@ -81,6 +81,16 @@ class ApplicationViews extends Component {
       )
     }
 
+    addAnimal = animal => {
+        AnimalManager.post(animal)
+        .then(() => AnimalManager.getAll())
+        .then(animals =>
+            this.setState({
+                animals: animals
+            })
+        );
+    }
+
     render() {
         return (
             <div id="body">
@@ -92,6 +102,11 @@ class ApplicationViews extends Component {
                     return <AnimalList animals={this.state.animals} 
                         ownersToAnimals={this.state.ownersToAnimals} 
                         deleteAnimal={this.deleteAnimal} />
+                }} />
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm {...props}
+                       addAnimal={this.addAnimal}
+                       employees={this.state.employees} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     return <AnimalDetail {...props} 
