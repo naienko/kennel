@@ -6,7 +6,8 @@ export default class AnimalForm extends Component {
     state = {
         animalName: "",
         breed: "",
-        employeeId: ""
+        employeeId: "",
+        ownerId: ""
     };
     
     // Update state whenever an input field is edited
@@ -31,7 +32,6 @@ export default class AnimalForm extends Component {
                 // Make sure the employeeId is saved to the database as a number since it is a foreign key.
                 employeeId: parseInt(this.state.employeeId)
             };
-            
             // Create the animal and redirect user to animal list
             this.props
                 .addAnimal(animal)
@@ -50,6 +50,17 @@ export default class AnimalForm extends Component {
                     <div className="form-group">
                         <label htmlFor="breed">Breed</label>
                             <input type="text" required className="form-control" onChange={this.handleFieldChange} id="breed" placeholder="Breed" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="owner">Owned by</label>
+                            <select defaultValue="" name="owner" id="ownerId" onChange={this.handleFieldChange}>
+                                <option value="">Select an owner</option>
+                                    {this.props.owners.map(element => (
+                                        <option key={element.id} id={element.id} value={element.id}>
+                                            {element.name}
+                                        </option>
+                                    ))}
+                            </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="employee">Assign to caretaker</label>

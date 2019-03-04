@@ -130,6 +130,7 @@ class ApplicationViews extends Component {
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props}
                        addAnimal={this.addAnimal}
+                       owners={this.state.owners}
                        employees={this.state.employees} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
