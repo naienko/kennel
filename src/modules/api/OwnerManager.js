@@ -11,5 +11,14 @@ export default {
         return fetch(`${Settings.RemoteURL}/owners/${id}`, {
             method: "DELETE"
         }).then(results => results.json())
-    }
+    },
+    post(newOwner) {
+        return fetch(`${Settings.RemoteURL}/owners`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newOwner)
+        }).then(data => data.json())
+      }
 }

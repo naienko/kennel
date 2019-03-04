@@ -13,6 +13,7 @@ import EmployeeDetail from './employee/EmployeeDetail';
 import OwnerDetail from "./owner/OwnerDetail";
 import AnimalForm from "./animal/AnimalForm";
 import EmployeeForm from "./employee/EmployeeForm";
+import OwnerForm from "./owner/OwnerForm";
 
 class ApplicationViews extends Component {
 
@@ -103,6 +104,16 @@ class ApplicationViews extends Component {
         );
     }
 
+    addOwner = owner => {
+        OwnerManager.post(owner)
+        .then(() => OwnerManager.getAll())
+        .then(owners =>
+            this.setState({
+                owners: owners
+            })
+        );
+    }
+
     render() {
         return (
             <div id="body">
@@ -143,9 +154,14 @@ class ApplicationViews extends Component {
                         employees={this.state.employees} />
                 }} />
 
-                <Route exact path="/owners" render={() => {
-                    return <OwnerList owners={this.state.owners}
+                <Route exact path="/owners" render={(props) => {
+                    return <OwnerList {...props}
+                        owners={this.state.owners}
                         deleteOwner={this.deleteOwner} />
+                }} />
+                <Route path="/owners/new" render={(props) => {
+                    return <OwnerForm {...props}
+                        addOwner={this.addOwner} />
                 }} />
                 <Route path="/owners/:ownerId(\d+)" render={(props) => {
                     return <OwnerDetail {...props} 
