@@ -14,6 +14,9 @@ export default class OwnerList extends Component {
                     this.props.owners.map(owner => 
                         <div key={owner.id} className="card">
                         <h3>{owner.name}</h3>
+                        <button type="button" className="btn btn-success" 
+                                onClick={() => { this.props.history.push(`/owners/${owner.id}/edit`); }}
+                                >Edit</button>
                         <Link className="nav-link" to={`/owners/${owner.id}`}>Details</Link>
                         <a href="#" onClick={() => this.props.deleteOwner(owner.id)}>Delete</a>
                         </div>

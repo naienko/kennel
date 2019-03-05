@@ -20,6 +20,8 @@ import EmployeeForm from "./employee/EmployeeForm";
 import OwnerForm from "./owner/OwnerForm";
 
 import AnimalEditForm from "./animal/AnimalEditForm";
+import EmployeeEditForm from "./employee/EmployeeEditForm";
+import OwnerEditForm from "./owner/OwnerEditForm";
 
 import Login from "./authentication/Login";
 
@@ -136,13 +138,33 @@ export default class ApplicationViews extends Component {
 
     updateAnimal = (editedAnimalObject) => {
         return AnimalManager.edit(editedAnimalObject)
-        .then(() => AnimalManager.getAll())
-        .then(animals => {
-          this.setState({
-            animals: animals
-          })
-        });
-      };
+            .then(() => AnimalManager.getAll())
+            .then(animals => {
+                this.setState({
+                    animals: animals
+                })
+            });
+    };
+
+    updateEmployee = (editedEmployeeObject) => {
+        return EmployeeManager.edit(editedEmployeeObject)
+            .then(() => EmployeeManager.getAll())
+            .then(employees => {
+                this.setState({
+                    employees: employees
+                })
+            });
+    };
+
+    updateOwner = (editedOwnerObject) => {
+        return OwnerManager.edit(editedOwnerObject)
+            .then(() => OwnerManager.getAll())
+            .then(owners => {
+                this.setState({
+                    owners: owners
+                })
+            });
+    };
 
     render() {
         return (
@@ -204,7 +226,6 @@ export default class ApplicationViews extends Component {
                     }
                 }} />
 
-
                 <Route exact path="/employees" render={(props) => {
                     if (this.isAuthenticated()) {
                         return <EmployeeList {...props}
@@ -222,11 +243,20 @@ export default class ApplicationViews extends Component {
                         return <Redirect to="/login" />
                     }
                 }} />
-                <Route path="/employees/:employeeId(\d+)" render={(props) => {
+                <Route exact path="/employees/:employeeId(\d+)" render={(props) => {
                     if (this.isAuthenticated()) {
                         return <EmployeeDetail {...props} 
                             deleteEmployee={this.deleteEmployee}
                             employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+                <Route path="/employees/:employeeId(\d+)/edit" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <EmployeeEditForm {...props} 
+                            employees={this.state.employees} 
+                            updateEmployee={this.updateEmployee} />
                     } else {
                         return <Redirect to="/login" />
                     }
@@ -249,11 +279,20 @@ export default class ApplicationViews extends Component {
                         return <Redirect to="/login" />
                     }
                 }} />
-                <Route path="/owners/:ownerId(\d+)" render={(props) => {
+                <Route exact path="/owners/:ownerId(\d+)" render={(props) => {
                     if (this.isAuthenticated()) {
                         return <OwnerDetail {...props} 
                             deleteOwner={this.deleteOwner}
                             owners={this.state.owners} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+                <Route path="/owners/:ownerId(\d+)/edit" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <OwnerEditForm {...props} 
+                            owners={this.state.owners} 
+                            updateOwner={this.updateOwner} />
                     } else {
                         return <Redirect to="/login" />
                     }

@@ -17,6 +17,9 @@ export default class OwnerDetail extends Component {
                             {owner.name}
                         </h4>
                         <p>Phone: {owner.phoneNumber}</p>
+                        <button type="button" className="btn btn-success" 
+                                onClick={() => { this.props.history.push(`/owners/${owner.id}/edit`); }}
+                                >Edit</button>
                         <a href="#"
                             onClick={() => this.props.deleteOwner(owner.id)
                                             .then(() => this.props.history.push("/owners"))}

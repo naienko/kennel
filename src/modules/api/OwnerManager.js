@@ -14,11 +14,20 @@ export default {
     },
     post(newOwner) {
         return fetch(`${Settings.RemoteURL}/owners`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newOwner)
+        	method: "POST",
+        	headers: {
+            	"Content-Type": "application/json"
+        	},
+        	body: JSON.stringify(newOwner)
         }).then(data => data.json())
-      }
+    },
+    edit(editedOwner) {
+         return fetch(`${Settings.RemoteURL}/owners/${editedOwner.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedOwner)
+        }).then(data => data.json());
+    }
 }

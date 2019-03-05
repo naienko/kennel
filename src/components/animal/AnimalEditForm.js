@@ -47,18 +47,17 @@ export default class AnimalEditForm extends Component {
         });
     }
 
-
     render() {
         return (
             <React.Fragment>
                 <form className="animalForm">
                     <div className="form-group">
                         <label htmlFor="animalName">Animal name</label>
-                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="animalName" value = {this.state.animalName} />
+                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="animalName" value={this.state.animalName} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="breed">Breed</label>
-                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="breed" value = {this.state.breed} />
+                        <input type="text" required className="form-control" onChange={this.handleFieldChange} id="breed" value={this.state.breed} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="species">What species</label>
