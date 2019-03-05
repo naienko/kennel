@@ -14,7 +14,7 @@ export default class AnimalList extends Component {
                 <section className="animals">
                     {
                         this.props.animals.map(animal => 
-                            <Animal animal={animal} 
+                            <Animal {...this.props} animal={animal} 
                                 owners={
                                     this.props.ownersToAnimals
                                         .filter(ao => ao.animalId === animal.id)

@@ -26,6 +26,9 @@ export default class Animal extends Component {
                                 :
                                 <Link className="nav-link" to={`/animals/${this.props.animal.id}`}>Details</Link>
                             }
+                            <button type="button" className="btn btn-success" 
+                                onClick={() => { this.props.history.push(`/animals/${this.props.animal.id}/edit`); }}
+                                >Edit</button>
                             <a href="#"
                             onClick={() => this.props.deleteAnimal(this.props.animal.id)
                                 .then(() => this.props.history.push("/animals"))}

@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
     
@@ -30,6 +31,8 @@ export default class Login extends Component {
                 password: this.state.password
             })
         )
+
+        return <Redirect to="/" />
     }
         
     render() {

@@ -21,7 +21,7 @@ export default class AnimalDetail extends Component {
 			}
 			
 		return (
-			<Animal animal={animal} 
+			<Animal {...this.props} animal={animal} 
 				owners={
 					this.props.ownersToAnimals
 						.filter(ao => ao.animalId === animal.id)

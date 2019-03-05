@@ -56,9 +56,10 @@
     },
     {
       "id": 6,
-      "name": "Checkers",
-      "breed": "ragdoll",
-      "speciesId": 2
+      "name": "Helios",
+      "breed": "Ragdoll",
+      "speciesId": 2,
+      "employeeId": 1
     }
   ],
   "owners": [

@@ -1,19 +1,26 @@
 import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from "react"
+
 import AnimalList from "./animal/AnimalList"
 import LocationList from "./location/LocationList"
 import EmployeeList from "./employee/EmployeeList"
 import OwnerList from "./owner/OwnerList"
+
 import AnimalManager from '../modules/api/AnimalManager';
 import EmployeeManager from '../modules/api/EmployeeManager';
 import LocationManager from '../modules/api/LocationManager';
 import OwnerManager from '../modules/api/OwnerManager';
+
 import AnimalDetail from './animal/AnimalDetail';
 import EmployeeDetail from './employee/EmployeeDetail';
 import OwnerDetail from "./owner/OwnerDetail";
+
 import AnimalForm from "./animal/AnimalForm";
 import EmployeeForm from "./employee/EmployeeForm";
 import OwnerForm from "./owner/OwnerForm";
+
+import AnimalEditForm from "./animal/AnimalEditForm";
+
 import Login from "./authentication/Login";
 
 export default class ApplicationViews extends Component {
@@ -127,6 +134,16 @@ export default class ApplicationViews extends Component {
         );
     }
 
+    updateAnimal = (editedAnimalObject) => {
+        return AnimalManager.edit(editedAnimalObject)
+        .then(() => AnimalManager.getAll())
+        .then(animals => {
+          this.setState({
+            animals: animals
+          })
+        });
+      };
+
     render() {
         return (
             <div id="body">
@@ -163,7 +180,7 @@ export default class ApplicationViews extends Component {
                         return <Redirect to="/login" />
                     }
                 }} />
-                <Route path="/animals/:animalId(\d+)" render={(props) => {
+                <Route exact path="/animals/:animalId(\d+)" render={(props) => {
                     if (this.isAuthenticated()) {
                         return <AnimalDetail {...props} 
                             deleteAnimal={this.deleteAnimal}
@@ -175,6 +192,18 @@ export default class ApplicationViews extends Component {
                         return <Redirect to="/login" />
                     }
                 }} />
+                <Route path="/animals/:animalId(\d+)/edit" render={(props) => {
+                    if (this.isAuthenticated()) {
+                        return <AnimalEditForm {...props} 
+                            employees={this.state.employees} 
+                            owners={this.state.owners} 
+                            species={this.state.species} 
+                            updateAnimal={this.updateAnimal} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
+                }} />
+
 
                 <Route exact path="/employees" render={(props) => {
                     if (this.isAuthenticated()) {
